@@ -215,6 +215,7 @@ platform_check_image() {
 	dch-m225|\
 	dir-610-a1|\
 	dir-645|\
+	dir-815-a1|\
 	dir-860l-b1)
 		[ "$magic" != "5ea3a417" ] && {
 			echo "Invalid image type."

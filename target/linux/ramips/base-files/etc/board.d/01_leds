@@ -152,6 +152,12 @@ mzk-dp150n|\
 vr500)
 	ucidef_set_led_default "power" "power" "$board:green:power" "1"
 	;;
+dir-815-a1)
+	ucidef_set_led_default "status" "Status LED (amber)" "$board:amber:status" "0"
+	ucidef_set_led_default "status2" "Status LED (green)" "$board:green:status" "1"
+	ucidef_set_led_default "wps" "WPS" "$board:blue:wps" "0"
+	ucidef_set_led_netdev "wan" "WAN" "$board:green:wan" "eth0.2"
+	;;
 dir-860l-b1)
 	ucidef_set_led_netdev "wan" "wan" "$board:green:net" "eth0.2"
 	;;

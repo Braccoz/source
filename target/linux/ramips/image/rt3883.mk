@@ -59,6 +59,28 @@ endef
 TARGET_DEVICES += dir-645
 
 
+define Device/dir-815-a1
+  DTS := DIR-815-A1
+  IMAGE_SIZE := $(ralink_default_fw_size_4M)
+  BLOCKSIZE := 64k
+  KERNEL := $(KERNEL_DTB)
+  IMAGES += factory.bin
+  IMAGE/sysupgrade.bin := \
+	append-kernel | pad-offset $$$$(BLOCKSIZE) 64 | append-rootfs | \
+	seama -m "dev=/dev/mtdblock/2" -m "type=firmware" | \
+	pad-rootfs | append-metadata | check-size $$$$(IMAGE_SIZE)
+  IMAGE/factory.bin := \
+	append-kernel | pad-offset $$$$(BLOCKSIZE) 64 | \
+	append-rootfs | pad-rootfs -x 64 | \
+	seama -m "dev=/dev/mtdblock/2" -m "type=firmware" | \
+	seama-seal -m "signature=wrgnd08_dlob_dir815" | \
+	check-size $$$$(IMAGE_SIZE)
+  DEVICE_TITLE := D-Link DIR-815 A1
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb-ohci kmod-usb2 swconfig
+endef
+TARGET_DEVICES += dir-815-a1
+
+
 define Device/hpm
   DTS := HPM
   BLOCKSIZE := 64k
