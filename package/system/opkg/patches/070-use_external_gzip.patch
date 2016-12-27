@@ -602,7 +602,7 @@
 +			close(rpipe[0]);
 +			close(rpipe[1]);
 +
-+			execlp("gzip", "gzip", "-d", filename ? filename : "-c", NULL);
++			execlp("gzip", "gzip", "-d",  "-c", filename, NULL);
 +			exit(-1);
 +
 +		default:
